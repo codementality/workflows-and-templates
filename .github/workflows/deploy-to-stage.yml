@@ -2,7 +2,7 @@ name:  Deploy to Stage
 on:
   push:
     branches:
-      # Will need to changes branches accordingly.
+      # Will need to changes branches accordingly. Testing.
       - 'master'
       - 'main'
 jobs:
