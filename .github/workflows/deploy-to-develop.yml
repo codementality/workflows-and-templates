@@ -1,0 +1,16 @@
+name:  Deploy to Develop
+on:
+  push:
+    branches:
+      # Will need to changes branches accordingly.
+      - 'develop'
+jobs:
+  application_tests:
+    uses: ./.github/workflows/application-tests.yml
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Step 1"
+        shell: bash
+      - run: echo "Step 2"
+        shell: bash

@@ -1,0 +1,18 @@
+name:  Deploy to Stage
+on:
+  push:
+    branches:
+      # Will need to changes branches accordingly.
+      - 'master'
+jobs:
+  security_tests:
+    uses: ./.github/workflows/security-checks.yml
+  application_tests:
+    uses: ./.github/workflows/application-tests.yml
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Step 1"
+        shell: bash
+      - run: echo "Step 2"
+        shell: bash
