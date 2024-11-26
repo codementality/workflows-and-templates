@@ -1,9 +1,0 @@
-name: Deploy Code
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Code Deployment
-        run: |
-          echo Success
