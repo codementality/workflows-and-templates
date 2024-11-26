@@ -1,4 +1,4 @@
-name: Application Testing
+name: _Application Testing (sh)
 on:
   workflow_call:
 jobs:

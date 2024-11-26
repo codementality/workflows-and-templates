@@ -1,4 +1,4 @@
-name: Security Checks
+name: _Security Checks (sh)
 on:
   workflow_call:
 jobs:
