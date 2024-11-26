@@ -5,6 +5,8 @@ on:
       - 'main'
       - 'feature/*'
       - 'bugfix/*'
+      - 'maintenance/*'
+      - 'hotfix/*'
 jobs:
   security_tests:
     uses: ./.github/workflows/security-checks.yml
