@@ -9,4 +9,4 @@ jobs:
       - name: Run Security Checks
         run: |
           echo Fail
-          exit 0
+          exit 1

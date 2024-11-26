@@ -4,6 +4,7 @@ on:
     branches:
       # Will need to changes branches accordingly.
       - 'master'
+      - 'main'
 jobs:
   security_tests:
     uses: ./.github/workflows/security-checks.yml
@@ -11,6 +12,8 @@ jobs:
     uses: ./.github/workflows/application-tests.yml
   deploy:
     runs-on: ubuntu-latest
+    needs: [application_tests, security_tests]
+    if: always() && (needs.application_tests.result == 'success' && needs.application_tests.result == 'success')    
     steps:
       - run: echo "Step 1"
         shell: bash
