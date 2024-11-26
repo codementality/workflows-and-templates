@@ -1,0 +1,8 @@
+name: Application Testing
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run SUCCESS script
+        run: echo Success
