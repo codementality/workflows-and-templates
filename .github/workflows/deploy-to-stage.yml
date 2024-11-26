@@ -13,7 +13,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [application_tests, security_tests]
-    if: always() && (needs.application_tests.result == 'success' && needs.application_tests.result == 'success')    
+    if: always() && !contains(needs.*.result, 'failure')
     steps:
       - run: echo "Step 1"
         shell: bash
