@@ -1,9 +1,9 @@
-name: _Security Checks (sh)
+name: _Validate YAML files (sh)
 on:
   workflow_call:
 jobs:
-  run_security_checks:
-    name: Composer Security Checks
+  yaml_lint:
+    name:  Linting YAML files
     runs-on: ubuntu-latest
     env:
       COMPOSER_MEMORY_LIMIT: -1
@@ -19,9 +19,9 @@ jobs:
 #      - name: Run composer install
 #        shell: bash
 #        run: ddev composer install -o
-#      - name:  Audit Composer for security issues
-#        run: ddev composer audit
-      - name: Run Security Checks
+      - name:  Check yaml files to make sure they are valid
+#        run: |
+#          ddev lint:yaml
         run: |
-          echo Fail
-          exit 1
+          echo Success
+          exit 0

@@ -1,14 +1,28 @@
 name:  Run Tests on Code
 on:
+  workflow_dispatch:
   push:
     branches:
-      - 'main'
       - 'feature/*'
       - 'bugfix/*'
       - 'maintenance/*'
       - 'hotfix/*'
+  pull_request_target:
+    types: [synchronize]
 jobs:
-  security_tests:
+  security_checks:
     uses: ./.github/workflows/security-checks.yml
-  application_tests:
-    uses: ./.github/workflows/application-tests.yml
+  coding_standards_checks:
+    uses: ./.github/workflows/coding-standards-checks.yml
+  phpstan_static_analysis:
+    uses: ./.github/workflows/phpstan-static-analysis.yml
+  yaml_lint:
+    uses: ./.github/workflows/yaml-lint.yml
+  test_site_install:
+    uses: ./.github/workflows/test-site-installation.yml
+  dry_run_deployment:
+    uses: ./.github/workflows/dry-run-deployment.yml
+#    secrets:
+#      ACQUIA_API_KEY: ${{ secrets.ACQUIA_API_KEY }}
+#      ACQUIA_API_SECRET: ${{ secrets.ACQUIA_API_SECRET }}
+#      PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}

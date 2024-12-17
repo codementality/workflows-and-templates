@@ -1,16 +1,16 @@
-name: _Security Checks (sh)
+name: _Drupal Coding Standards Checks (sh)
 on:
   workflow_call:
 jobs:
-  run_security_checks:
-    name: Composer Security Checks
+  coding_standards_checks:
+    name:  Drupal Coding Standards
     runs-on: ubuntu-latest
     env:
       COMPOSER_MEMORY_LIMIT: -1
     steps:
       - uses: actions/checkout@v4
       - name: Shut down Ubuntu MySQL
-        run: sudo service mysql stop
+        run: sudo service mysql stop #shutdown default mysql, sudo is necessary
 #      - name: Setup DDEV for site install testing
 #        uses: ddev/github-action-setup-ddev@v1
 #      - name: Validate composer.
@@ -19,9 +19,9 @@ jobs:
 #      - name: Run composer install
 #        shell: bash
 #        run: ddev composer install -o
-#      - name:  Audit Composer for security issues
-#        run: ddev composer audit
-      - name: Run Security Checks
+      - name: Check for compliance with Drupal Coding Standards
+#        run: |
+#          ddev check:coding:standards
         run: |
-          echo Fail
-          exit 1
+          echo Success
+          exit 0

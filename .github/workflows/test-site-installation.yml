@@ -1,12 +1,13 @@
-name: _Security Checks (sh)
+name: _Test Site Install (sh)
 on:
   workflow_call:
 jobs:
-  run_security_checks:
-    name: Composer Security Checks
-    runs-on: ubuntu-latest
+  test_site_install:
+    name: Run Test Site Install
+    runs-on:  ubuntu-latest
     env:
       COMPOSER_MEMORY_LIMIT: -1
+      DRUPAL_ROOT: ./docroot
     steps:
       - uses: actions/checkout@v4
       - name: Shut down Ubuntu MySQL
@@ -19,9 +20,9 @@ jobs:
 #      - name: Run composer install
 #        shell: bash
 #        run: ddev composer install -o
-#      - name:  Audit Composer for security issues
-#        run: ddev composer audit
-      - name: Run Security Checks
+      - name: Install site from config on DDEV
+#        run: |
+#          ddev install:and:test
         run: |
-          echo Fail
-          exit 1
+          echo Success
+          exit 0

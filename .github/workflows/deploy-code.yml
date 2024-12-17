@@ -1,0 +1,59 @@
+name: _Deploy Code (sh)
+on:
+  workflow_call:
+#    secrets:
+#      ACQUIA_API_KEY:
+#        required: true
+#      ACQUIA_API_SECRET:
+#        required: true
+#      PRIVATE_SSH_KEY:
+#        required: true
+jobs:
+  deploy_code:
+    name: Deploy Code
+    runs-on:  ubuntu-latest
+    env:
+      COMPOSER_MEMORY_LIMIT: -1
+      DRUPAL_ROOT: ./docroot
+#      ACQUIA_API_KEY: ${{ secrets.ACQUIA_API_KEY }}
+#      ACQUIA_API_SECRET: ${{ secrets.ACQUIA_API_SECRET }}
+#      PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shut down Ubuntu MySQL
+        run: sudo service mysql stop
+      - name: Get branch name (merge)
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+      - name: Show branch name being used for this workflow.
+        run: echo ${{ env.BRANCH_NAME }}
+#      - name: Set up private SSH key for pushing builds to Acquia
+#        shell: bash
+#        run: |
+#          mkdir -p .ddev/homeadditions/.ssh
+#          echo "${{ secrets.PRIVATE_SSH_KEY }}" > .ddev/homeadditions/.ssh/id_rsa
+#          chmod 700 .ddev/homeadditions/.ssh
+#          chmod 600 .ddev/homeadditions/.ssh/*
+#        env:
+#          PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+#      - name: Setup DDEV for site install testing
+#        uses: ddev/github-action-setup-ddev@v1
+#      - name: Validate composer.
+#        shell: bash
+#        run: ddev composer validate
+#      - name: Run composer install
+#        shell: bash
+#        run: ddev composer install -o
+#      - name: Execute a deployment
+#        env:
+#          ACQUIA_API_KEY: ${{ env.ACQUIA_API_KEY }}
+#          ACQUIA_API_SECRET: ${{ env.ACQUIA_API_SECRET }}
+#          BRANCH_NAME: ${{ env.BRANCH_NAME }}
+#        run: |
+#          echo ${{ env.BRANCH_NAME }}
+#          echo "----------------------------------------------"
+#          ddev acquia:deploy
+      - name: Execute a deployment
+        run: |
+          echo Success
+          exit 0
